@@ -46,6 +46,22 @@ class DirCommandTest extends AbstractCommandTest {
         assertTrue(actual.contains(expected), "Expected : " + expected + " But was: " + actual);
     }
 
+    @Test
+    void testDirWithTargetFolder(@TempDir Path tempDir, @TempDir Path targetFolder) throws IOException {
+        // given
+        prepareTestFolder(tempDir);
+        SimpleCmd.setCurrentLocation(tempDir.toFile());
+        prepareTargetFolder(targetFolder);
+        String[] args = {"-t", targetFolder.toAbsolutePath().toString()};
+        DirCommand dirCommand = CommandLine.populateCommand(new DirCommand(), args);
+        // when
+        dirCommand.run();
+        // then
+        String expected = targetFolder.toAbsolutePath() + File.separator + "myTFile.txt";
+        String actual = getOutputStream().toString();
+        assertTrue(actual.contains(expected), "Expected : " + expected + " But was: " + actual);
+    }
+
     private void prepareTestFolder(@TempDir Path tempDir) throws IOException {
         // for other possible usages of @TempDir see https://www.baeldung.com/junit-5-temporary-directory
         Path myFile = tempDir.resolve("myFile.txt");
@@ -55,6 +71,18 @@ class DirCommandTest extends AbstractCommandTest {
         Path directory = Files.createDirectory(folder1, noAttributes);
 
         Path myFile2 = directory.resolve("myFile2.txt");
+        Files.write(myFile2, Collections.singletonList(""));
+    }
+
+    private void prepareTargetFolder(@TempDir Path tempDir) throws IOException {
+        // for other possible usages of @TempDir see https://www.baeldung.com/junit-5-temporary-directory
+        Path myFile = tempDir.resolve("myTFile.txt");
+        Files.write(myFile, Collections.singletonList(""));
+
+        Path folder1 = tempDir.resolve("tfolder1");
+        Path directory = Files.createDirectory(folder1, noAttributes);
+
+        Path myFile2 = directory.resolve("myT2.txt");
         Files.write(myFile2, Collections.singletonList(""));
     }
 }
