@@ -4,8 +4,10 @@ import cmd.SimpleCmd;
 import picocli.CommandLine;
 
 import java.io.File;
-import java.util.Scanner;
-import java.util.stream.Stream;
+
+/**
+ * This Class implements the change Directory functionality
+ */
 
 @CommandLine.Command(
         name = "cd",
