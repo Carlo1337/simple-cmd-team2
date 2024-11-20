@@ -1,8 +1,6 @@
-package cmd.commands.find.del;
+package cmd.commands.find;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -51,6 +49,7 @@ public class FindCommand implements Runnable {
                     list.forEach(this::printLine);
                 } else {
                     LOG.info("No files found for extension {}\n", this.fileExtension);
+                    LOG.info("To create a file, the command mkf can be used.\n");
                 }
             }
         }

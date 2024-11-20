@@ -6,7 +6,7 @@ import cmd.commands.del.DelCommand;
 import cmd.commands.dir.DirCommand;
 import cmd.commands.mkd.MakeDirCommand;
 import cmd.commands.mkf.MakeFile;
-import cmd.commands.find.del.FindCommand;
+import cmd.commands.find.FindCommand;
 import picocli.CommandLine.Command;
 
 /**
