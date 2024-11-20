@@ -4,8 +4,10 @@ import cmd.SimpleCmd;
 import picocli.CommandLine;
 
 import java.io.File;
-import java.util.Scanner;
-import java.util.stream.Stream;
+
+/**
+ * This Class implements the change Directory functionality
+ */
 
 @CommandLine.Command(
         name = "cd",
@@ -13,6 +15,7 @@ import java.util.stream.Stream;
         mixinStandardHelpOptions = true)
 public class cdCommand implements Runnable {
 
+    @CommandLine.Parameters(index = "0", description = "where to change to")
     private File file;
 
     public cdCommand() {
@@ -20,16 +23,7 @@ public class cdCommand implements Runnable {
     }
 
     public void run() {
-        String directory = "";
-
-        Scanner scanner = new Scanner(System.in);
-        directory = scanner.nextLine();
-
-        File file = new File(directory);
-
         changeDirectory(file);
-
-        scanner.close();
     }
 
     void changeDirectory(File directory) {
