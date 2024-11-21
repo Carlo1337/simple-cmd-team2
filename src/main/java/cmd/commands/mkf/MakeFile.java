@@ -29,9 +29,11 @@ public class MakeFile implements Runnable {
         try {
             Files.createFile(file.toPath());
         } catch (IOException e) {
+            // Informiere den Nutzer, wenn die Datei bereits existiert
             LOG.info("Datei existiert bereits. Geben Sie einen neuen Namen ein!\n");
             try (Scanner scanner = new Scanner(System.in)) {
                 String nextLine = scanner.nextLine();
+                // Alternativer Datei-Name
                 if (!nextLine.isEmpty()) {
                     Files.createFile(Path.of(nextLine));
                 }
