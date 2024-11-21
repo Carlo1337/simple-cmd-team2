@@ -2,11 +2,12 @@ package cmd.commands;
 
 import cmd.commands.changeDirectory.cdCommand;
 import cmd.commands.copy.CopyCommand;
+import cmd.commands.date.DateCommand;
 import cmd.commands.del.DelCommand;
 import cmd.commands.dir.DirCommand;
+import cmd.commands.find.FindCommand;
 import cmd.commands.mkd.MakeDirCommand;
 import cmd.commands.mkf.MakeFile;
-import cmd.commands.find.FindCommand;
 import cmd.commands.rename.RenameCommand;
 import picocli.CommandLine.Command;
 
@@ -17,6 +18,7 @@ import picocli.CommandLine.Command;
  * This can be done using the subcommands parameter of the @Command annotation.
  * <p/>
  * For a deeper understanding of how this is tied together please check the picocli documentation.
+ *
  * @see <a href="https://picocli.info/">picocli Documentation</a>
  */
 @Command(
@@ -25,7 +27,8 @@ import picocli.CommandLine.Command;
         mixinStandardHelpOptions = true,
         subcommands = {
                 DirCommand.class, DelCommand.class, CopyCommand.class, cdCommand.class,
-                MakeDirCommand.class, MakeFile.class, FindCommand.class, RenameCommand.class})
+                MakeDirCommand.class, MakeFile.class, FindCommand.class, RenameCommand.class,
+                DateCommand.class })
 public class BaseCommand implements Runnable {
     public BaseCommand() {
         /* intentionally empty */
